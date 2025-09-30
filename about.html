@@ -11,6 +11,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link rel="stylesheet" href="assets/css/guard.css" />
   <script type="module" src="assets/js/eh-components.js" defer></script>
 
   <style>
@@ -163,12 +164,28 @@
       </div>
     </div>
   </footer>
+  
+  <!-- Back to top -->
+  <button id="backToTop"
+          class="hidden fixed bottom-6 right-6 z-50 rounded-full p-3 bg-gray-900/80 border border-gray-700 text-white shadow-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400"
+          aria-label="Back to top"
+          title="Back to top">
+    <i data-feather="arrow-up"></i>
+  </button>
 
   <script>
     feather.replace();
     const btn = document.querySelector('.mobile-menu-button');
     const menu = document.querySelector('.mobile-menu');
     if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    const topBtn = document.getElementById('backToTop');
+    const toggleTopBtn = () => {
+      if (!topBtn) return;
+      topBtn.classList.toggle('hidden', window.scrollY < 400);
+    };
+    window.addEventListener('scroll', toggleTopBtn, { passive: true });
+    toggleTopBtn();
+    topBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>
