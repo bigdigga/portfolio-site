@@ -1,0 +1,40 @@
+/* Scope to your site to avoid being heavy-handed */
+#app-root .gtext {
+  background-image: linear-gradient(to right, #34d399, #60a5fa) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+#app-root .btn-gradient {
+  color: #fff !important;
+  background-image: linear-gradient(90deg, #22c55e, #2563eb) !important;
+  box-shadow: 0 8px 20px -8px rgba(37,99,235,.55) !important;
+  border: 0 !important;
+}
+
+#app-root .hero-bg {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(34,197,94,.10), transparent 60%),
+    radial-gradient(900px 400px at 80% 20%, rgba(59,130,246,.10), transparent 60%),
+    linear-gradient(90deg, #0b0d11, #0b0d11) !important;
+}
+
+/* Common extension overrides to neutralize */
+#app-root a, 
+#app-root button, 
+#app-root h1, 
+#app-root h2, 
+#app-root h3, 
+#app-root p {
+  text-decoration: inherit !important;
+  filter: none !important;
+}
+
+/* Keep Tailwind layout intact if extensions mess with display */
+#app-root .grid { display: grid !important; }
+#app-root .flex { display: flex !important; }
+
+/* Optional: shield your nav & hero from filter/color overrides */
+#app-root .shield { isolation: isolate; }
+
