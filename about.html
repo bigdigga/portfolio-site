@@ -5,31 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>About | Eli Herman</title>
 
-  <!-- Icons -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png" />
   <meta name="theme-color" content="#0a0a0a" />
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Feather -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-    :root { color-scheme: dark; }
-    body { font-family:'Space Grotesk',sans-serif; background:#0a0a0a; color:#f5f5f5; }
-    .hf-gradient-text{ background-image:linear-gradient(to right,#34d399,#60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    :root{ color-scheme:dark; }
+    body{ font-family:'Space Grotesk',sans-serif; background:#0a0a0a; color:#f5f5f5; }
+    .gtext{ background-image:linear-gradient(to right,#34d399,#60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .card-hover:hover{ transform:translateY(-5px); box-shadow:0 10px 25px -5px rgba(74,222,128,.2); }
   </style>
 </head>
-<body class="min-h-screen">
+<body>
+
   <!-- NAV -->
   <nav class="bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
-        <a href="index.html" class="flex items-center text-xl font-semibold hf-gradient-text">Eli Herman</a>
+        <a href="index.html" class="flex items-center text-xl font-semibold gtext">Eli Herman</a>
 
         <div class="hidden md:flex items-center space-x-8">
           <a href="index.html"  class="text-gray-400 hover:text-white transition">Home</a>
@@ -51,20 +48,20 @@
     </div>
   </nav>
 
-  <!-- PAGE -->
+  <!-- MAIN -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- SIDEBAR CARD -->
-      <aside class="md:col-span-1">
-        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 card-hover">
-          <!-- Avatar box (fallback circle if you don't have an image) -->
-          <div class="w-40 h-40 mx-auto mb-6 rounded-xl bg-black/60 border border-gray-700 flex items-center justify-center text-4xl font-bold text-green-400">
-            EH
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- PROFILE CARD -->
+      <aside class="lg:col-span-1">
+        <div class="bg-gray-900 rounded-lg border border-gray-800 p-6 card-hover">
+          <div class="w-full flex justify-center mb-6">
+            <img src="assets/img/sailor-bear.jpg" alt="Baylor Sailor Bear"
+                 class="w-40 h-40 object-contain rounded-md ring-1 ring-gray-700" />
           </div>
 
-          <div class="space-y-4 text-gray-300">
+          <div class="space-y-5 text-gray-300">
             <div class="flex items-start">
-              <i data-feather="map-pin" class="mt-1 mr-3 text-green-400"></i>
+              <i data-feather="map-pin" class="mr-3 text-green-400"></i>
               <div>
                 <div class="font-semibold">Location</div>
                 <div class="text-gray-400">Waco, Texas</div>
@@ -72,15 +69,15 @@
             </div>
 
             <div class="flex items-start">
-              <i data-feather="book-open" class="mt-1 mr-3 text-green-400"></i>
+              <i data-feather="book-open" class="mr-3 text-green-400"></i>
               <div>
                 <div class="font-semibold">Education</div>
-                <div class="text-gray-400">Baylor University<br/>MIS &amp; Finance — Expected 2027</div>
+                <div class="text-gray-400">Baylor University<br/>MIS &amp; Finance<br/>Expected Graduation: 2027</div>
               </div>
             </div>
 
             <div class="flex items-start">
-              <i data-feather="heart" class="mt-1 mr-3 text-green-400"></i>
+              <i data-feather="heart" class="mr-3 text-green-400"></i>
               <div>
                 <div class="font-semibold">Interests</div>
                 <div class="text-gray-400">AI, Finance, Political Science</div>
@@ -88,56 +85,66 @@
             </div>
 
             <a href="assets/Eli_Herman_Resume.pdf" download
-               class="inline-flex items-center w-full justify-center mt-4 px-4 py-2 rounded-md text-white bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
+               class="inline-flex items-center px-4 py-2 rounded-md text-white bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
               <i data-feather="download" class="mr-2"></i> Download Resume
             </a>
           </div>
         </div>
       </aside>
 
-      <!-- MAIN CONTENT -->
-      <section class="md:col-span-2">
-        <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 card-hover">
-          <h1 class="text-3xl font-bold hf-gradient-text mb-6">About Me</h1>
+      <!-- ABOUT BODY -->
+      <section class="lg:col-span-2">
+        <div class="bg-gray-900 rounded-lg border border-gray-800 p-6 card-hover">
+          <h1 class="text-3xl font-bold gtext mb-5">About Me</h1>
           <p class="text-gray-300 leading-relaxed">
-            I am a business undergraduate at Baylor University pursuing a double major in Management Information
-            Systems and Finance. I’m building skills in Python, data analysis, and machine learning through
-            personal projects. My academic path reflects a passion for understanding complex systems and applying
-            data-driven approaches to solve problems.
+            I am a business undergraduate at Baylor University pursuing a double major in
+            Management Information Systems and Finance. I’m currently building skills in Python,
+            data analysis, and machine learning through personal projects. My academic path reflects
+            a passion for understanding complex systems and applying data-driven approaches to solve
+            problems.
           </p>
           <p class="text-gray-300 leading-relaxed mt-4">
-            I bring strong interpersonal and communication skills, with a proven ability to collaborate effectively.
-            I’m interested in opportunities that bridge technical tools with real-world applications in business,
-            policy, and research.
+            I bring strong interpersonal and communication skills, with proven ability to collaborate
+            effectively in team settings. I’m especially interested in opportunities that let me bridge
+            technical tools with real-world applications in business, policy, and research.
+          </p>
+          <p class="text-gray-300 leading-relaxed mt-4">
+            Outside of academics, I enjoy staying active in Baylor’s business clubs, participating in
+            case competitions, and mentoring younger students. My goal is to combine my technical and
+            financial knowledge to create innovative solutions in the fintech space.
           </p>
 
-          <hr class="my-8 border-gray-800">
+          <hr class="my-6 border-gray-800" />
 
-          <h2 class="text-2xl font-semibold hf-gradient-text mb-4">Academic Focus Areas</h2>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="bg-black/40 rounded-md p-4 border border-gray-800">
-              <div class="flex items-center text-gray-200">
-                <i data-feather="bar-chart-2" class="mr-2 text-green-400"></i> Data Analytics
+          <h2 class="text-2xl font-semibold gtext mb-4">Academic Focus Areas</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-700">
+              <div class="flex items-center mb-2">
+                <i data-feather="bar-chart-2" class="mr-2 text-green-400"></i>
+                <span class="font-semibold">Data Analytics</span>
               </div>
-              <p class="text-gray-400 text-sm mt-2">Extracting insights from complex datasets.</p>
+              <p class="text-gray-400">Extracting insights from complex datasets</p>
             </div>
-            <div class="bg-black/40 rounded-md p-4 border border-gray-800">
-              <div class="flex items-center text-gray-200">
-                <i data-feather="trending-up" class="mr-2 text-green-400"></i> Financial Modeling
+            <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-700">
+              <div class="flex items-center mb-2">
+                <i data-feather="trending-up" class="mr-2 text-green-400"></i>
+                <span class="font-semibold">Financial Modeling</span>
               </div>
-              <p class="text-gray-400 text-sm mt-2">Predictive scenarios for markets & businesses.</p>
+              <p class="text-gray-400">Building predictive financial scenarios</p>
             </div>
-            <div class="bg-black/40 rounded-md p-4 border border-gray-800">
-              <div class="flex items-center text-gray-200">
-                <i data-feather="cpu" class="mr-2 text-green-400"></i> Machine Learning
+            <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-700">
+              <div class="flex items-center mb-2">
+                <i data-feather="cpu" class="mr-2 text-green-400"></i>
+                <span class="font-semibold">Machine Learning</span>
               </div>
-              <p class="text-gray-400 text-sm mt-2">Using models to support decisions.</p>
+              <p class="text-gray-400">Practical ML for forecasting and classification</p>
             </div>
-            <div class="bg-black/40 rounded-md p-4 border border-gray-800">
-              <div class="flex items-center text-gray-200">
-                <i data-feather="briefcase" class="mr-2 text-green-400"></i> Business Strategy
+            <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-700">
+              <div class="flex items-center mb-2">
+                <i data-feather="briefcase" class="mr-2 text-green-400"></i>
+                <span class="font-semibold">Business Strategy</span>
               </div>
-              <p class="text-gray-400 text-sm mt-2">Practical, data-backed recommendations.</p>
+              <p class="text-gray-400">Applying analytics to strategic decisions</p>
             </div>
           </div>
         </div>
