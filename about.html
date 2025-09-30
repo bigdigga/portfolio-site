@@ -11,6 +11,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script type="module" src="assets/js/eh-components.js" defer></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -84,10 +85,7 @@
               </div>
             </div>
 
-            <a href="assets/Eli_Herman_Resume.pdf" download
-               class="inline-flex items-center px-4 py-2 rounded-md text-white bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
-              <i data-feather="download" class="mr-2"></i> Download Resume
-            </a>
+            <eh-btn href="assets/Eli_Herman_Resume.pdf" download>Download Resume</eh-btn>
           </div>
         </div>
       </aside>
@@ -95,7 +93,7 @@
       <!-- ABOUT BODY -->
       <section class="lg:col-span-2">
         <div class="bg-gray-900 rounded-lg border border-gray-800 p-6 card-hover">
-          <h1 class="text-3xl font-bold gtext mb-5">About Me</h1>
+          <h1 class="text-3xl font-bold mb-5"><eh-gtext>About Me</eh-gtext></h1>
           <p class="text-gray-300 leading-relaxed">
             I am a business undergraduate at Baylor University pursuing a double major in
             Management Information Systems and Finance. I’m currently building skills in Python,

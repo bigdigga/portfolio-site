@@ -16,6 +16,9 @@
   <!-- Feather icons -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
+  <!-- Shadow-DOM components (protect gradients/buttons from extensions) -->
+  <script type="module" src="assets/js/eh-components.js" defer></script>
+
   <!-- Fonts + small utilities -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -61,18 +64,15 @@
     <!-- stable full-bleed gradient -->
     <div class="absolute inset-0 bg-gradient-to-r from-[#0e1116] via-black to-[#0e1116]"></div>
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 gtext">Eli Herman</h1>
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+        <eh-gtext>Eli Herman</eh-gtext>
+      </h1>
       <p class="text-xl md:text-2xl mb-6 text-gray-300">MIS &amp; Finance Student at Baylor University</p>
       <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-400">
         Problem-solver, aspiring entrepreneur, and data-driven thinker
       </p>
 
-      <a href="assets/Eli_Herman_Resume.pdf" download
-         class="inline-flex items-center justify-center mt-10 px-6 py-3 rounded-lg text-white
-                bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
-        <i data-feather="download" class="mr-2"></i>
-        Download Resume
-      </a>
+      <eh-btn href="assets/Eli_Herman_Resume.pdf" download>Download Resume</eh-btn>
     </div>
   </header>
 
@@ -160,10 +160,7 @@
               <a href="https://github.com/eliherman" target="_blank" class="text-gray-300 hover:text-green-400 hover:underline">github.com/eliherman</a>
             </div>
             <div class="pt-2">
-              <a href="assets/Eli_Herman_Resume.pdf" download
-                 class="inline-flex items-center px-4 py-2 rounded-md text-white bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
-                <i data-feather="download" class="mr-2"></i> Download Resume
-              </a>
+              <eh-btn href="assets/Eli_Herman_Resume.pdf" download>Download Resume</eh-btn>
             </div>
           </div>
         </div>
