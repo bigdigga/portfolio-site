@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eli Herman | MIS & Finance Student</title>
 
   <!-- Favicon / App Icon -->
@@ -14,214 +14,179 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            baylor: '#1E4D2B',
-            accent: '#FFB81C'
-          }
-        }
-      }
+      theme: { extend: {
+        colors: { baylor:'#1E4D2B', accent:'#FFB81C' }
+      }}
     }
   </script>
 
   <!-- Feather -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
-  <!-- Fonts + Base styles -->
+  <!-- Fonts + minimal fixes -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
     :root { color-scheme: dark; }
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background-color: #0a0a0a;
-      color: #f5f5f5;
+    body { font-family:'Space Grotesk',sans-serif; background:#0a0a0a; color:#f5f5f5; }
+    .hf-gradient-text{ /* stable gradient text */
+      background-image: linear-gradient(to right,#34d399,#60a5fa);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
     }
-    /* Gradient text fix to prevent “flash of invisible text” */
-    .hf-gradient-text{
-      background-image: linear-gradient(to right, #34d399, #60a5fa); /* from-green-400 to-blue-500 */
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(74, 222, 128, 0.2);
-    }
-    .social-icon:hover { transform: scale(1.1); color: #4ade80; }
-    ::selection { background: #4ade80; color: #0a0a0a; }
+    .card-hover:hover{ transform:translateY(-5px); box-shadow:0 10px 25px -5px rgba(74,222,128,.2); }
+    ::selection{ background:#4ade80; color:#0a0a0a; }
   </style>
 </head>
-<body>
-  <!-- Nav -->
+<body class="min-h-screen">
+  <!-- NAV -->
   <nav class="bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
-        <div class="flex items-center">
-          <a href="index.html" class="text-xl font-semibold hf-gradient-text">Eli Herman</a>
-        </div>
+        <a href="index.html" class="flex items-center text-xl font-semibold hf-gradient-text">Eli Herman</a>
+
         <div class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="text-green-400 font-medium hover:text-white transition">Home</a>
-          <a href="about.html" class="text-gray-400 hover:text-white transition">About</a>
+          <a href="about.html"  class="text-gray-400 hover:text-white transition">About</a>
           <a href="projects.html" class="text-gray-400 hover:text-white transition">Projects</a>
         </div>
-        <div class="md:hidden flex items-center">
-          <button class="mobile-menu-button" aria-label="Open menu">
-            <i data-feather="menu"></i>
-          </button>
-        </div>
+
+        <button class="md:hidden mobile-menu-button" aria-label="Open menu">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu hidden md:hidden border-t border-gray-800">
+      <div class="px-4 py-3 space-y-2 bg-black/90">
+        <a href="index.html"   class="block text-green-400">Home</a>
+        <a href="about.html"   class="block text-gray-300">About</a>
+        <a href="projects.html" class="block text-gray-300">Projects</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="bg-gradient-to-r from-gray-900 via-black to-gray-900 py-24 md:py-32 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 hf-gradient-text">Eli Herman</h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-300">MIS & Finance Student at Baylor University</p>
+  <!-- HERO -->
+  <header class="relative border-b border-gray-800">
+    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-black to-gray-900"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 hf-gradient-text">Eli Herman</h1>
+      <p class="text-xl md:text-2xl mb-6 text-gray-300">MIS &amp; Finance Student at Baylor University</p>
       <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-400">
         Problem-solver, aspiring entrepreneur, and data-driven thinker
       </p>
-      <div class="mt-8">
-        <a href="assets/Eli_Herman_Resume.pdf" class="inline-flex items-center px-5 py-3 rounded-md text-white
-           bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition"
-           download>
-          <i data-feather="download" class="mr-2"></i> Download Resume
-        </a>
-      </div>
+
+      <a href="assets/Eli_Herman_Resume.pdf" download
+         class="inline-flex items-center mt-10 px-6 py-3 rounded-lg text-white
+                bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
+        <i data-feather="download" class="mr-2"></i> Download Resume
+      </a>
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid md:grid-cols-2 gap-12">
-      <!-- Left -->
-      <div class="space-y-12">
-        <!-- Education -->
-        <section>
-          <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
-            <i data-feather="book" class="mr-2"></i> Education
-          </h2>
-          <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
-            <h3 class="text-xl font-semibold mb-2">Baylor University</h3>
-            <p class="text-gray-300 mb-2">Double Major in Management Information Systems &amp; Finance</p>
-            <p class="text-gray-400">Expected Graduation: 2027</p>
-          </div>
-        </section>
+      <!-- LEFT -->
+      <section>
+        <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
+          <i data-feather="book" class="mr-2"></i> Education
+        </h2>
+        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
+          <h3 class="text-xl font-semibold mb-2">Baylor University</h3>
+          <p class="text-gray-300 mb-2">Double Major in Management Information Systems &amp; Finance</p>
+          <p class="text-gray-400">Expected Graduation: 2027</p>
+        </div>
 
-        <!-- Experience -->
-        <section>
-          <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
-            <i data-feather="briefcase" class="mr-2"></i> Experience
-          </h2>
+        <h2 class="text-2xl font-bold hf-gradient-text mb-6 mt-12 flex items-center">
+          <i data-feather="briefcase" class="mr-2"></i> Experience
+        </h2>
+        <div class="space-y-4">
+          <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
+            <h3 class="text-xl font-semibold">Financial Analyst Intern</h3>
+            <p class="text-gray-300 mb-2">ABC Corporation, Summer 2023</p>
+            <ul class="list-disc pl-5 text-gray-400">
+              <li>Developed financial models to analyze investment opportunities</li>
+              <li>Prepared quarterly reports for the executive team</li>
+            </ul>
+          </div>
+          <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
+            <h3 class="text-xl font-semibold">MIS Research Assistant</h3>
+            <p class="text-gray-300 mb-2">Baylor University, 2022–Present</p>
+            <ul class="list-disc pl-5 text-gray-400">
+              <li>Assisted professors with data collection and analysis</li>
+              <li>Built Python scripts to automate processing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <section>
+        <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
+          <i data-feather="code" class="mr-2"></i> Skills
+        </h2>
+        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <h3 class="font-semibold mb-2">Technical</h3>
+              <ul class="space-y-1 text-gray-300">
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Python</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Data Analysis</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Machine Learning</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>SQL</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Excel/VBA</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-2">Business</h3>
+              <ul class="space-y-1 text-gray-300">
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Financial Modeling</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Project Management</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Business Analytics</li>
+                <li class="flex items-center"><i data-feather="check" class="mr-2 text-green-400"></i>Market Research</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold hf-gradient-text mb-6 mt-12 flex items-center">
+          <i data-feather="mail" class="mr-2"></i> Contact
+        </h2>
+        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
           <div class="space-y-4">
-            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
-              <h3 class="text-xl font-semibold">Financial Analyst Intern</h3>
-              <p class="text-gray-300 mb-2">ABC Corporation, Summer 2023</p>
-              <ul class="list-disc pl-5 text-gray-400">
-                <li>Developed financial models to analyze investment opportunities</li>
-                <li>Assisted in preparing quarterly reports for executive team</li>
-              </ul>
+            <div class="flex items-center">
+              <i data-feather="mail" class="mr-3 text-green-400"></i>
+              <a href="mailto:eli.herman@example.com" class="text-gray-300 hover:text-green-400 hover:underline">eli.herman@example.com</a>
             </div>
-            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
-              <h3 class="text-xl font-semibold">MIS Research Assistant</h3>
-              <p class="text-gray-300 mb-2">Baylor University, 2022–Present</p>
-              <ul class="list-disc pl-5 text-gray-400">
-                <li>Assisted professors with data collection and analysis</li>
-                <li>Developed Python scripts to automate data processing</li>
-              </ul>
+            <div class="flex items-center">
+              <i data-feather="linkedin" class="mr-3 text-green-400"></i>
+              <a href="https://www.linkedin.com/in/eli-herman254/" target="_blank" class="text-gray-300 hover:text-green-400 hover:underline">linkedin.com/in/eli-herman254</a>
             </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- Right -->
-      <div class="space-y-12">
-        <!-- Skills -->
-        <section>
-          <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
-            <i data-feather="code" class="mr-2"></i> Skills
-          </h2>
-          <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <h3 class="font-semibold mb-2">Technical</h3>
-                <ul class="space-y-1">
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Python</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Data Analysis</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Machine Learning</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> SQL</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Excel/VBA</li>
-                </ul>
-              </div>
-              <div>
-                <h3 class="font-semibold mb-2">Business</h3>
-                <ul class="space-y-1">
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Financial Modeling</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Project Management</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Business Analytics</li>
-                  <li class="flex items-center text-gray-300"><i data-feather="check" class="mr-2 text-green-400"></i> Market Research</li>
-                </ul>
-              </div>
+            <div class="flex items-center">
+              <i data-feather="github" class="mr-3 text-green-400"></i>
+              <a href="https://github.com/eliherman" target="_blank" class="text-gray-300 hover:text-green-400 hover:underline">github.com/eliherman</a>
+            </div>
+            <div class="pt-2">
+              <a href="assets/Eli_Herman_Resume.pdf" download
+                 class="inline-flex items-center px-4 py-2 rounded-md text-white bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 transition">
+                <i data-feather="download" class="mr-2"></i> Download Resume
+              </a>
             </div>
           </div>
-        </section>
-
-        <!-- Contact -->
-        <section>
-          <h2 class="text-2xl font-bold hf-gradient-text mb-6 flex items-center">
-            <i data-feather="mail" class="mr-2"></i> Contact
-          </h2>
-          <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-green-400 transition card-hover">
-            <div class="space-y-4">
-              <div class="flex items-center">
-                <i data-feather="mail" class="mr-3 text-green-400"></i>
-                <a href="mailto:eli.herman@example.com" class="text-gray-300 hover:text-green-400 transition hover:underline">
-                  eli.herman@example.com
-                </a>
-              </div>
-              <div class="flex items-center">
-                <i data-feather="linkedin" class="mr-3 text-green-400"></i>
-                <a href="https://www.linkedin.com/in/eli-herman254/" target="_blank" class="text-gray-300 hover:text-green-400 transition hover:underline">
-                  linkedin.com/in/eli-herman254
-                </a>
-              </div>
-              <div class="flex items-center">
-                <i data-feather="github" class="mr-3 text-green-400"></i>
-                <a href="https://github.com/eliherman" target="_blank" class="text-gray-300 hover:text-green-400 transition hover:underline">
-                  github.com/eliherman
-                </a>
-              </div>
-              <div class="pt-4">
-                <a href="assets/Eli_Herman_Resume.pdf" class="inline-flex items-center px-4 py-2 bg-gradient-to-r
-                   from-green-500 to-blue-600 text-white rounded-md hover:from-green-600 hover:to-blue-700 transition" download>
-                  <i data-feather="download" class="mr-2"></i> Download Resume
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="bg-black py-8 border-t border-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-600 mb-4 md:mb-0">© 2025 Eli Herman. All rights reserved.</p>
         <div class="flex space-x-6">
-          <a href="https://www.linkedin.com/in/eli-herman254/" class="text-gray-500 hover:text-green-400 transition social-icon" target="_blank" aria-label="LinkedIn">
-            <i data-feather="linkedin"></i>
-          </a>
-          <a href="https://github.com/eliherman" class="text-gray-500 hover:text-green-400 transition social-icon" target="_blank" aria-label="GitHub">
-            <i data-feather="github"></i>
-          </a>
-          <a href="#" class="text-gray-500 hover:text-green-400 transition social-icon" aria-label="Twitter">
-            <i data-feather="twitter"></i>
-          </a>
+          <a href="https://www.linkedin.com/in/eli-herman254/" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+          <a href="https://github.com/eliherman" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
+          <a href="#" class="text-gray-500 hover:text-green-400 transition" aria-label="Twitter"><i data-feather="twitter"></i></a>
         </div>
       </div>
     </div>
@@ -229,13 +194,9 @@
 
   <script>
     feather.replace();
-
-    // Mobile menu toggle (if you later add a hidden menu container)
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (mobileMenuButton && mobileMenu){
-      mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    }
+    const btn = document.querySelector('.mobile-menu-button');
+    const menu = document.querySelector('.mobile-menu');
+    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
   </script>
 </body>
 </html>
