@@ -38,3 +38,47 @@
 /* Optional: shield your nav & hero from filter/color overrides */
 #app-root .shield { isolation: isolate; }
 
+/* Contained hero glow (no bleed) */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* two soft radial glows that meet under the title */
+  background:
+    radial-gradient(1200px 420px at 50% 35%, rgba(36, 255, 164, 0.18), transparent 60%),
+    radial-gradient(900px 320px  at 50% 35%, rgba(59, 130, 246, 0.12), transparent 55%);
+
+  /* fade the top/bottom so it never spills into other sections */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 10%, black 90%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, black 10%, black 90%, transparent 100%);
+}
+
+/* ----- HERO glow paint containment (prevents bleeding) ----- */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;                /* sit behind hero content */
+  pointer-events: none;
+  contain: paint;             /* isolate this paint work */
+
+  /* two soft radial highlights that meet under the title */
+  background:
+    radial-gradient(1200px 420px at 50% 35%, rgba(54,255,164,0.18), transparent 60%),
+    radial-gradient(900px 320px  at 50% 35%, rgba(59,130,246,0.12), transparent 55%);
+
+  /* softly fade the very top/bottom to transparent so it doesn't spill */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0, black 10%, black 90%, transparent 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0, black 10%, black 90%, transparent 100%);
+}
+
+/* keep your gradient text looking crisp across extensions */
+.gtext {
+  background-image: linear-gradient(to right, #34d399, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
