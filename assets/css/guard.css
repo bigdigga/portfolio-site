@@ -107,3 +107,16 @@ html { scroll-behavior: smooth; }
   opacity: 1;
   transform: translateY(0);
 }
+/* Smooth slide-down animation for mobile menu */
+.mobile-menu{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 380ms cubic-bezier(.22,.61,.36,1);
+  will-change:max-height;
+}
+/* On desktop, remove the cap so it never animates/overflows weirdly */
+@media (min-width:768px){
+  .mobile-menu{ max-height:none !important; }
+}
+/* Make the menu icon look consistent on all pages */
+.mobile-menu-button svg{ width:24px; height:24px; display:block; }

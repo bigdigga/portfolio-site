@@ -190,32 +190,52 @@
   </button>
 
   <script>
-  // icons
-  feather.replace();
+    feather.replace();
 
-  // mobile menu (matches .mobile-menu.open in guard.css)
-  const btn  = document.querySelector('.mobile-menu-button');
-  const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobile-menu');
 
-  if (btn && menu) {
-    btn.setAttribute('aria-expanded', 'false');
+    function openMenu(){
+      menu.classList.remove('max-h-0');
+      menu.classList.add('max-h-screen');
+      btn.setAttribute('aria-expanded','true');
+      btn.innerHTML = '<i data-feather="x"></i>';
+      feather.replace();
+    }
+    function closeMenu(){
+      menu.classList.remove('max-h-screen');
+      menu.classList.add('max-h-0');
+      btn.setAttribute('aria-expanded','false');
+      btn.innerHTML = '<i data-feather="menu"></i>';
+      feather.replace();
+    }
 
-    btn.addEventListener('click', () => {
-      const open = !menu.classList.contains('open');
-      menu.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
-    });
-  }
+    if (btn && menu){
+      // Ensure closed on load
+      closeMenu();
 
-  // back-to-top (safe if not present)
-  const topBtn = document.getElementById('backToTop');
-  if (topBtn) {
-    const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
-    window.addEventListener('scroll', toggleTopBtn, { passive: true });
-    toggleTopBtn();
-    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
+      // Toggle on button
+      btn.addEventListener('click', () => {
+        menu.classList.contains('max-h-screen') ? closeMenu() : openMenu();
+      });
+
+      // Close after tapping a link
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+      // Close when resizing to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeMenu();
+      }, { passive: true });
+    }
+
+    // Back-to-top (safe if button exists)
+    const topBtn = document.getElementById('backToTop');
+    if (topBtn) {
+      const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
+      window.addEventListener('scroll', toggleTopBtn, { passive: true });
+      toggleTopBtn();
+      topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
   </script>
-
 </body>
 </html>
