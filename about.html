@@ -4,6 +4,13 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>About | Eli Herman</title>
+  <meta name="description" content="About Eli Herman — Baylor University MIS & Finance student passionate about problem-solving, data-driven thinking, and entrepreneurship.">
+
+  <meta property="og:title" content="About | Eli Herman">
+  <meta property="og:description" content="Learn more about Eli Herman’s academic background, interests, and focus areas at Baylor University.">
+  <meta property="og:image" content="https://eli-herman.github.io/portfolio-site/assets/img/sailor-bear.jpg">
+  <meta property="og:url" content="https://eli-herman.github.io/portfolio-site/about.html">
+  <meta property="og:type" content="profile">
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png" />
@@ -41,7 +48,9 @@
         </button>
       </div>
     </div>
-    <div class="mobile-menu hidden md:hidden border-t border-gray-800">
+    
+    <!-- Mobile menu -->
+    <div class="mobile-menu md:hidden max-h-0 overflow-hidden border-t border-gray-800 transition-all duration-500 ease-out">
       <div class="px-4 py-3 space-y-2 bg-black/90">
         <a href="index.html" class="block text-gray-300">Home</a>
         <a href="about.html" class="block text-green-400">About</a>
@@ -183,15 +192,23 @@
   const menu = document.querySelector('.mobile-menu');
 
   if (btn && menu) {
-    // a11y init
+    // initialize a11y state
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', 'primary-mobile-menu');
-    if (!menu.id) menu.id = 'primary-mobile-menu';
 
-    // toggle
     btn.addEventListener('click', () => {
-      const isHidden = menu.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isHidden));
+      const isOpen = menu.classList.contains('max-h-screen');
+
+      if (isOpen) {
+        // close
+        menu.classList.remove('max-h-screen');
+        menu.classList.add('max-h-0');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        // open
+        menu.classList.remove('max-h-0');
+        menu.classList.add('max-h-screen');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   }
 
