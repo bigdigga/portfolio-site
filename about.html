@@ -57,8 +57,11 @@
       <aside class="lg:col-span-1">
         <div class="bg-gray-900 rounded-lg border border-gray-800 p-6 card-hover">
           <div class="w-full flex justify-center mb-6">
-            <img src="assets/img/sailor-bear.jpg" alt="Baylor Sailor Bear"
-                 class="w-40 h-40 object-contain rounded-md ring-1 ring-gray-700" />
+            <img src="assets/img/sailor-bear.jpg"
+                alt="Baylor Sailor Bear"
+                class="w-40 h-40 object-contain rounded-md ring-1 ring-gray-700"
+                loading="lazy"
+                decoding="async">
           </div>
 
           <div class="space-y-5 text-gray-300">
@@ -157,9 +160,9 @@
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-600 mb-4 md:mb-0">© 2025 Eli Herman. All rights reserved.</p>
         <div class="flex space-x-6">
-          <a href="https://www.linkedin.com/in/eli-herman254/" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
-          <a href="https://github.com/eli-herman" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
-          <a href="#" class="text-gray-500 hover:text-green-400 transition" aria-label="Twitter"><i data-feather="twitter"></i></a>
+          <a href="https://www.linkedin.com/in/eli-herman254/" rel="noopener noreferrer" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+          <a href="https://github.com/eli-herman" rel="noopener noreferrer" class="text-gray-500 hover:text-green-400 transition" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
+          <a href="#" rel="noopener noreferrer" class="text-gray-500 hover:text-green-400 transition" aria-label="Twitter"><i data-feather="twitter"></i></a>
         </div>
       </div>
     </div>
@@ -174,18 +177,32 @@
   </button>
 
   <script>
-    feather.replace();
-    const btn = document.querySelector('.mobile-menu-button');
-    const menu = document.querySelector('.mobile-menu');
-    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-    const topBtn = document.getElementById('backToTop');
-    const toggleTopBtn = () => {
-      if (!topBtn) return;
-      topBtn.classList.toggle('hidden', window.scrollY < 400);
-    };
+  feather.replace();
+
+  const btn  = document.querySelector('.mobile-menu-button');
+  const menu = document.querySelector('.mobile-menu');
+
+  if (btn && menu) {
+    // a11y init
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'primary-mobile-menu');
+    if (!menu.id) menu.id = 'primary-mobile-menu';
+
+    // toggle
+    btn.addEventListener('click', () => {
+      const isHidden = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isHidden));
+    });
+  }
+
+  // Back-to-top (safe even if the button isn't on the page)
+  const topBtn = document.getElementById('backToTop');
+  if (topBtn) {
+    const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
     window.addEventListener('scroll', toggleTopBtn, { passive: true });
     toggleTopBtn();
-    topBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  </script>
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+</script>
 </body>
 </html>
