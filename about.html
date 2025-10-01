@@ -33,30 +33,34 @@
 
   <!-- NAV -->
   <nav class="bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <a href="index.html" class="flex items-center text-xl font-semibold gtext">Eli Herman</a>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <a href="index.html" class="flex items-center text-xl font-semibold gtext">Eli Herman</a>
 
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="index.html"  class="text-gray-400 hover:text-white transition">Home</a>
-          <a href="about.html"   class="text-green-400 font-medium hover:text-white transition">About</a>
-          <a href="projects.html" class="text-gray-400 hover:text-white transition">Projects</a>
-        </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html"  class="text-gray-400 hover:text-white transition">Home</a>
+        <a href="about.html"   class="text-green-400 font-medium hover:text-white transition">About</a>
+        <a href="projects.html" class="text-gray-400 hover:text-white transition">Projects</a>
+      </div>
 
-        <button class="md:hidden mobile-menu-button" aria-label="Open menu">
-          <i data-feather="menu"></i>
-        </button>
-      </div>
+      <!-- single hamburger button -->
+      <button class="md:hidden mobile-menu-button"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Open menu">
+        <i data-feather="menu"></i>
+      </button>
     </div>
-    
-    <!-- Mobile menu -->
-    <div class="mobile-menu md:hidden max-h-0 overflow-hidden border-t border-gray-800 transition-all duration-500 ease-out">
-      <div class="px-4 py-3 space-y-2 bg-black/90">
-        <a href="index.html" class="block text-gray-300">Home</a>
-        <a href="about.html" class="block text-green-400">About</a>
-        <a href="projects.html" class="block text-gray-300">Projects</a>
-      </div>
+  </div>
+
+  <!-- single mobile menu container -->
+  <div id="mobile-menu" class="mobile-menu md:hidden border-t border-gray-800">
+    <div class="px-4 py-3 space-y-2 bg-black/90">
+      <a href="index.html"    class="block text-green-400">Home</a>
+      <a href="about.html"    class="block text-gray-300">About</a>
+      <a href="projects.html" class="block text-gray-300">Projects</a>
     </div>
+  </div>
   </nav>
 
   <!-- MAIN -->
@@ -186,33 +190,24 @@
   </button>
 
   <script>
+  // icons
   feather.replace();
 
+  // mobile menu (matches .mobile-menu.open in guard.css)
   const btn  = document.querySelector('.mobile-menu-button');
-  const menu = document.querySelector('.mobile-menu');
+  const menu = document.getElementById('mobile-menu');
 
   if (btn && menu) {
-    // initialize a11y state
     btn.setAttribute('aria-expanded', 'false');
 
     btn.addEventListener('click', () => {
-      const isOpen = menu.classList.contains('max-h-screen');
-
-      if (isOpen) {
-        // close
-        menu.classList.remove('max-h-screen');
-        menu.classList.add('max-h-0');
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        // open
-        menu.classList.remove('max-h-0');
-        menu.classList.add('max-h-screen');
-        btn.setAttribute('aria-expanded', 'true');
-      }
+      const open = !menu.classList.contains('open');
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
     });
   }
 
-  // Back-to-top (safe even if the button isn't on the page)
+  // back-to-top (safe if not present)
   const topBtn = document.getElementById('backToTop');
   if (topBtn) {
     const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
@@ -220,6 +215,7 @@
     toggleTopBtn();
     topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
-</script>
+  </script>
+
 </body>
 </html>
