@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png" />
   <meta name="theme-color" content="#0a0a0a" />
 
+  <script type="module" src="assets/js/eh-components.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   <link rel="stylesheet" href="assets/css/guard.css" />
@@ -43,22 +44,21 @@
         <a href="projects.html" class="text-gray-400 hover:text-white transition">Projects</a>
       </div>
 
-      <!-- single hamburger button -->
-      <button class="md:hidden mobile-menu-button"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-              aria-label="Open menu">
-        <i data-feather="menu"></i>
-      </button>
-    </div>
-  </div>
+      <!-- Hamburger -->
+  <button id="menuBtn"
+          class="md:hidden mobile-menu-button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open menu">
+    <i data-feather="menu"></i>
+  </button>
 
-  <!-- single mobile menu container -->
-  <div id="mobile-menu" class="mobile-menu md:hidden border-t border-gray-800">
-    <div class="px-4 py-3 space-y-2 bg-black/90">
-      <a href="index.html"    class="block text-green-400">Home</a>
-      <a href="about.html"    class="block text-gray-300">About</a>
-      <a href="projects.html" class="block text-gray-300">Projects</a>
+  <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden border-t border-gray-800">
+      <div class="px-4 py-3 space-y-2 bg-black/90">
+        <a href="index.html"  class="block text-green-400">Home</a>
+        <a href="about.html"  class="block text-gray-300">About</a>
+        <a href="projects.html" class="block text-gray-300">Projects</a>
     </div>
   </div>
   </nav>
@@ -190,52 +190,52 @@
   </button>
 
   <script>
+  // Replace feather icons once up front
+  feather.replace();
+
+  const btn  = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    menu.classList.add('open');               // <- drive CSS animation
+    btn.setAttribute('aria-expanded', 'true');
+    btn.innerHTML = '<i data-feather="x"></i>';
     feather.replace();
+  }
 
-    const btn  = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobile-menu');
+  function closeMenu() {
+    menu.classList.remove('open');            // <- drive CSS animation
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<i data-feather="menu"></i>';
+    feather.replace();
+  }
 
-    function openMenu(){
-      menu.classList.remove('max-h-0');
-      menu.classList.add('max-h-screen');
-      btn.setAttribute('aria-expanded','true');
-      btn.innerHTML = '<i data-feather="x"></i>';
-      feather.replace();
-    }
-    function closeMenu(){
-      menu.classList.remove('max-h-screen');
-      menu.classList.add('max-h-0');
-      btn.setAttribute('aria-expanded','false');
-      btn.innerHTML = '<i data-feather="menu"></i>';
-      feather.replace();
-    }
+  if (btn && menu) {
+    // Ensure closed on load
+    closeMenu();
 
-    if (btn && menu){
-      // Ensure closed on load
-      closeMenu();
+    // Toggle on button tap
+    btn.addEventListener('click', () => {
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
 
-      // Toggle on button
-      btn.addEventListener('click', () => {
-        menu.classList.contains('max-h-screen') ? closeMenu() : openMenu();
-      });
+    // Close after tapping a nav link
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-      // Close after tapping a link
-      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    // Close when resizing up to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) closeMenu();
+    }, { passive: true });
+  }
 
-      // Close when resizing to desktop
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) closeMenu();
-      }, { passive: true });
-    }
-
-    // Back-to-top (safe if button exists)
-    const topBtn = document.getElementById('backToTop');
-    if (topBtn) {
-      const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
-      window.addEventListener('scroll', toggleTopBtn, { passive: true });
-      toggleTopBtn();
-      topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
+  // Back-to-top (safe if button exists)
+  const topBtn = document.getElementById('backToTop');
+  if (topBtn) {
+    const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
+    window.addEventListener('scroll', toggleTopBtn, { passive: true });
+    toggleTopBtn();
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
   </script>
 </body>
 </html>
