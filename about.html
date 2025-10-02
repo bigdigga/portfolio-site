@@ -189,42 +189,45 @@
   </button>
 
   <script>
+  // Replace feather icons once up front
   feather.replace();
 
   const btn  = document.getElementById('menuBtn');
   const menu = document.getElementById('mobile-menu');
 
   function openMenu() {
-    menu.classList.remove('hidden');          // show
-    menu.classList.add('open');               // animate open
+    menu.classList.add('open');               // <- drive CSS animation
     btn.setAttribute('aria-expanded', 'true');
     btn.innerHTML = '<i data-feather="x"></i>';
     feather.replace();
   }
 
   function closeMenu() {
-    menu.classList.remove('open');            // animate close
-    menu.classList.add('hidden');             // hide
+    menu.classList.remove('open');            // <- drive CSS animation
     btn.setAttribute('aria-expanded', 'false');
     btn.innerHTML = '<i data-feather="menu"></i>';
     feather.replace();
   }
 
   if (btn && menu) {
-    closeMenu(); // start closed
+    // Ensure closed on load
+    closeMenu();
 
+    // Toggle on button tap
     btn.addEventListener('click', () => {
       menu.classList.contains('open') ? closeMenu() : openMenu();
     });
 
+    // Close after tapping a nav link
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
+    // Close when resizing up to desktop
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) closeMenu();
     }, { passive: true });
   }
 
-  // Back-to-top...
+  // Back-to-top (safe if button exists)
   const topBtn = document.getElementById('backToTop');
   if (topBtn) {
     const toggleTopBtn = () => topBtn.classList.toggle('hidden', window.scrollY < 400);
